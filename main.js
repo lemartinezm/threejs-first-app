@@ -24,15 +24,51 @@ function main() {
   scene.add(light);
 
   const controls = new OrbitControls(camera, renderer.domElement);
-  controls.autoRotate = true;
+  // controls.autoRotate = true;
 
   const loader = new GLTFLoader();
+  loader.load(
+    "models/reyna/scene.gltf",
+    (gltf) => {
+      const model = gltf.scene;
+      console.log(gltf);
+      model.position.set(0, 0, 0);
+      model.rotateY(-Math.PI / 2);
+      scene.add(model);
+      renderer.render(scene, camera);
+    },
+    () => {
+      console.log("loading");
+    },
+    (err) => {
+      console.error(err);
+    }
+  );
+
   loader.load(
     "models/neon/scene.gltf",
     (gltf) => {
       const model = gltf.scene;
       console.log(gltf);
-      model.position.set(0, 0, 0);
+      model.position.set(-2, 0, 0);
+      // model.rotateY(Math.PI / 2);
+      scene.add(model);
+      renderer.render(scene, camera);
+    },
+    () => {
+      console.log("loading");
+    },
+    (err) => {
+      console.error(err);
+    }
+  );
+
+  loader.load(
+    "models/sage/scene.gltf",
+    (gltf) => {
+      const model = gltf.scene;
+      console.log(gltf);
+      model.position.set(2, 0.25, 0);
       // model.rotateY(Math.PI / 2);
       scene.add(model);
       renderer.render(scene, camera);
