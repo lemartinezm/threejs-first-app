@@ -28,7 +28,7 @@ function main() {
 
   const loader = new GLTFLoader();
   loader.load(
-    "./public/models/neon/scene.gltf",
+    "models/neon/scene.gltf",
     (gltf) => {
       const model = gltf.scene;
       console.log(gltf);
