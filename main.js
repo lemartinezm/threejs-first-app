@@ -9,7 +9,7 @@ function main() {
   const fov = 45;
   const aspect = canvas.clientWidth / canvas.clientHeight; // the canvas default
   const near = 1;
-  const far = 50;
+  const far = 1000;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
   camera.position.z = 5;
   camera.position.y = 5;
@@ -32,7 +32,8 @@ function main() {
     (gltf) => {
       const model = gltf.scene;
       console.log(gltf);
-      model.position.set(0, 0, 0);
+      model.position.set(0, 1, 0);
+      model.scale.set(1.25, 1.25, 1.25);
       model.rotateY(-Math.PI / 2);
       scene.add(model);
       renderer.render(scene, camera);
@@ -50,7 +51,7 @@ function main() {
     (gltf) => {
       const model = gltf.scene;
       console.log(gltf);
-      model.position.set(-2, 0, 0);
+      model.position.set(-2, 1, 0);
       // model.rotateY(Math.PI / 2);
       scene.add(model);
       renderer.render(scene, camera);
@@ -68,7 +69,26 @@ function main() {
     (gltf) => {
       const model = gltf.scene;
       console.log(gltf);
-      model.position.set(2, 0.25, 0);
+      model.position.set(2, 1.5, 0);
+      // model.rotateY(Math.PI / 2);
+      model.scale.set(1.5, 1.5, 1.5);
+      scene.add(model);
+      renderer.render(scene, camera);
+    },
+    () => {
+      console.log("loading");
+    },
+    (err) => {
+      console.error(err);
+    }
+  );
+
+  loader.load(
+    "models/bind/scene.gltf",
+    (gltf) => {
+      const model = gltf.scene;
+      console.log(gltf);
+      model.position.set(-100, 0, -15);
       // model.rotateY(Math.PI / 2);
       scene.add(model);
       renderer.render(scene, camera);
